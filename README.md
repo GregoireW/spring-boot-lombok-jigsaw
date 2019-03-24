@@ -9,3 +9,11 @@ $ mvn package
 
 $ java --module-path target/dependency/:target/demo-0.0.1-SNAPSHOT.jar -m demo/com.example.demo.DemoApplication
 ```
+
+then to test:
+
+```bash
+curl http://localhost:8080
+```
+
+Unfortunatly, there is some automatic module left so that jlink is not yet usable without hack.
