@@ -2,7 +2,7 @@
 
 This is a simple project to test if it is possible to use spring boot in a modular way (jigsaw) with lombok. 
 
-After some issue, this seems to work fine. 
+For once, this seems to work fine (got some issue with IDE or maven before, now both seems to be ok at the same time). 
 
 ```bash
 $ mvn package
