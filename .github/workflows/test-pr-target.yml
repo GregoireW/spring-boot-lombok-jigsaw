@@ -7,25 +7,32 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test:
+          - un
+          - deux
     steps:
-      - name: Dump GitHub context
-        run: echo "$GITHUB_CONTEXT"
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-      
+#      - name: Dump GitHub context
+#        run: echo "$GITHUB_CONTEXT"
+#        env:
+#          GITHUB_CONTEXT: ${{ toJson(github) }}
+      - name: print
+        run: echo {{ matrix.test }}
+       
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
           ref: refs/pull/${{ github.event.number }}/merge
 
-      - name: Set up JDK 11
-        uses: actions/setup-java@v1
-        with:
-          java-version: 11
+#      - name: Set up JDK 11
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: 11
 
-      - name: Build and analyze
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.pullrequest.key=${{ github.event.number }} -Dsonar.pullrequest.branch=PR-${{ github.event.number }} -Dsonar.pullrequest.base=${{ github.base_ref }} -Dsonar.scm.revision=${{ github.event.pull_request.head.sha }}
+#      - name: Build and analyze
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+#        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.pullrequest.key=${{ github.event.number }} -Dsonar.pullrequest.branch=PR-${{ github.event.number }} -Dsonar.pullrequest.base=${{ github.base_ref }} -Dsonar.scm.revision=${{ github.event.pull_request.head.sha }}
 
