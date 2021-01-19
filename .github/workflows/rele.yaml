@@ -1,0 +1,15 @@
+name: release
+
+on:
+  release:
+    types:
+      - released
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: retag
+        run: |
+          export git_commit_short=${GITHUB_SHA::7}
+          echo "valus is $git_commit_short"
