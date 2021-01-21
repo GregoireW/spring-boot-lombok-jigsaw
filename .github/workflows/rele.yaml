@@ -18,7 +18,7 @@ jobs:
         
       - name: test
         run: |
-          more .npmrc
+          more $NPM_CONFIG_USERCONFIG
           npm whoami
         env:
           NODE_AUTH_TOKEN:  ${{ secrets.NPM_TOKEN }}
