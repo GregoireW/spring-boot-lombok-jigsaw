@@ -1,15 +1,15 @@
 name: release
 
 on:
-  release:
-    types:
-      - released
-
+  workflow_dispatch: {}
+  
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: retag
-        run: |
-          export git_commit_short=${GITHUB_SHA::7}
-          echo "valus is $git_commit_short"
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
+          ssh-strict: false
