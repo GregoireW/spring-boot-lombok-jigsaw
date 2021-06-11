@@ -18,10 +18,10 @@ jobs:
           result-encoding: string
           script: |
             const fs = require('fs').promises;
-            println(fs);
+            console.log(fs);
             
             var content = await fs.readFile("afile.txt");
-            println(content);
+            console.log(content);
             
             return content;
 
