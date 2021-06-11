@@ -23,7 +23,7 @@ jobs:
             var content = await fs.readFile("afile.txt");
             console.log(content);
             
-            return content;
+            return content.toString().toUpperCase();
 
       - name: display result
         run: echo ${{ steps.format.outputs.result }}
