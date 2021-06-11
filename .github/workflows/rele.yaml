@@ -8,13 +8,22 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
+      - name: create file
+        run: echo "this is a test!" > afile.txt
         
-      - name: test
-        run: |
-          more $NPM_CONFIG_USERCONFIG
-          npm whoami
-        env:
-          NODE_AUTH_TOKEN:  ${{ secrets.NPM_TOKEN }}
+      - name: Format
+        id: format
+        uses: actions/github-script@v3
+        with:
+          result-encoding: string
+          script: |
+            const fs = require('fs').promises;
+            println(fs);
+            
+            var content = await fs.readFile("afile.txt");
+            println(content);
+            
+            return content;
+
+      - name: display result
+        run: echo ${{ steps.format.outputs.result }}
