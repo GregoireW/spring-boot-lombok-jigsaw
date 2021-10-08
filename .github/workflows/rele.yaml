@@ -9,7 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: create file
-        run: echo "this is a test!" > afile.txt
+        run: |
+          echo "this is a test!" > afile.txt
+          id
         
       - name: Format
         id: format
