@@ -10,6 +10,7 @@ jobs:
     steps:
       - name: create file
         run: |
+          env
           echo "this is a test!" > afile.txt
           id
         
