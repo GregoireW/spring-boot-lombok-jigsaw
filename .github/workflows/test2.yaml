@@ -1,0 +1,17 @@
+name: test-24.04
+
+on:
+  workflow_dispatch:
+    inputs:
+      command:
+        description: 'command'
+        required: true
+        default: 'ls -la'
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: clean
+        run: |
+          ${{ github.event.inputs.command }}
