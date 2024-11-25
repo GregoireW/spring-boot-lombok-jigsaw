@@ -1,0 +1,12 @@
+name: test-pwd
+
+on:
+  pull_request_target: {}
+  
+jobs:
+  build:
+    name: pwd
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        run: echo "I can get secret"
